@@ -83,6 +83,8 @@ values
 
         internal void UpdateInstanceStatus(StatusType status, string message, int sequence, int? pid = null)
         {
+            message = message.Replace( "'", "`" );
+
             string pidsql = pid.HasValue ? $",{Fields.PId} = {pid.Value}" : string.Empty;
             string sql = $@"
 update {Fields.TableName}
